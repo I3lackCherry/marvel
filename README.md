@@ -1,2 +1,3 @@
-![image](https://github.com/I3lackCherry/marvel/assets/146437516/3286ff90-d6d6-43a2-9087-8db6cb911d09)
-![image](https://github.com/I3lackCherry/marvel/assets/146437516/f53e8cd5-42c4-4ed0-b615-a8ee5e964cb4)
+![image](https://github.com/I3lackCherry/marvel/assets/146437516/cf2a6c99-7762-4755-8f8d-7c204a7cb963)
+![image](https://github.com/I3lackCherry/marvel/assets/146437516/3794baec-d642-4a87-ba07-e726c81ca713)
+![image](https://github.com/I3lackCherry/marvel/assets/146437516/2bd5a46d-3fdd-4286-8428-4784238e3e66)
