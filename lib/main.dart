@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laptev_malkov/components/item_list.dart';
+import 'package:comics/pages/Catalog.dart';
+import 'package:comics/pages/Comic.dart';
 import 'signup.dart';
 
 void main() => runApp(MyApp());
@@ -165,4 +166,101 @@ class BackgroundSignIn extends CustomPainter{
 
   }
 
+}
+
+class ComicsCatalog extends StatelessWidget {
+  final List<Comic> _comics = [
+    Comic(
+      title: 'Черепашки-Ниндзя: Приключения. Том 2. Возвращение Шреддера',
+      description: 'Леонардо, Рафаэль, Микеланджело и Донателло... Эти имена знакомы каждому! Вторая книга включает выпуски TMNT Adventures #1-4 и расскажет о возвращении Шреддера, который вновь доставит неприятности нашей Зелёной Команде — сначала попытавшись очернить их в глазах общественности, а затем уменьшив при помощи инопланетного кристалла!',
+      price: '300',
+      images: ['https://static.insales-cdn.com/images/products/1/5735/382367335/tmnt_adv_2_alt_2_BKYf59C.jpg'],
+    ),
+    Comic(
+      title: 'Комикс Хеллбой. Книга 1. Семя разрушения',
+      description: 'Когда Вторая мировая приняла неудачный для нацистов оборот, те попытались переломить ход войны при помощи магии, но проведенный ими ритуал имел неожиданный результат: во-первых, призванный в наш мир демон попал не к нацистам, а к американцам, а во-вторых, он оказался всего лишь маленьким ребенком. Его прозвали "Хеллбой" - "мальчик из Ада".',
+      price: '300',
+      images: ['https://i.imgur.com/dvwWv6e.jpg'],
+    ),
+    Comic(
+      title: 'Супермен. Полная энциклопедия Человека из Стали',
+      description: 'Вот уже 80 лет Кларк Кент стоит на страже справедливости и защиты людей. За это время его личность обросла множеством историй. Пришелец из далекого мира, он рос как обычный человек, пока его способности не проявились. Он сражался с множеством злодеев на Земле на других планетах и даже в параллельных мирах, тысячу раз рискуя своей жизнью ради других. По праву считаясь одним их сильнейших и добрейших супергероев в истории комиксов.',
+      price: '300',
+      images: ['https://www.hybrisonline.com/pub_images/original/WB-42-SUP001.jpg'],
+    ),
+  ];
+
+  int _selectedComicIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Каталог комиксов', style: TextStyle(color: Colors.black)),
+      ),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            height: 150,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: _comics.length,
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ComicPage(_comics[index])));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(
+                            _comics[index].images[0],
+                            width: 100,
+                            height: 120,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Text(_comics[index].title),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: _comics.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(_comics[index].title),
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.deepPurple,
+                    child: ClipOval(
+                      child: Image.network(
+                        _comics[index].images[0],
+                        width: 50,
+                        height: 50,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ComicPage(_comics[index])));
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
